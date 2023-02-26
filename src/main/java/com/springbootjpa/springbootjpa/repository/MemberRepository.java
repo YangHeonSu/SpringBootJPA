@@ -1,6 +1,6 @@
-package com.springbootJpa.Repository;
+package com.springbootjpa.springbootjpa.repository;
 
-import com.springbootJpa.Entity.Member;
+import com.springbootjpa.springbootjpa.domain.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -31,8 +31,4 @@ public class MemberRepository {
     public Member findById(Long id) {
         return entityManager.find(Member.class, id);
     }
-
-
-
-
 }
