@@ -2,7 +2,6 @@ package com.springbootjpa.springbootjpa.repository;
 
 import com.springbootjpa.springbootjpa.domain.Member;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
