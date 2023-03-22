@@ -13,6 +13,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
@@ -32,6 +34,13 @@ public class MemberController {
         return "member/memberForm";
     }
 
+    /**
+     * 회원 등록
+     * 
+     * @param memberDTO MemberDTO
+     * @param bindingResult BindingResult
+     * @return String redirect
+     */
     @PostMapping("/members/new")
     public String save(@Validated MemberDTO memberDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -45,6 +54,26 @@ public class MemberController {
         memberService.save(member);
 
         return "redirect:/";
-
     }
+
+    /**
+     * 계정 조회
+     *
+     * @param model Model
+     * @return memberList Page
+     */
+    @GetMapping("/members")
+    public String findAll(Model model) {
+        /*
+         * Entity를 직접 노출 시키는 것은 추천안함
+         * 원래는 Entity -> DTO 변환 후 model로 넘겨야함
+         *
+         */
+        List<Member> members = memberService.findAll();
+        model.addAttribute("members", members);
+
+        return "member/memberList";
+    }
+    
+    
 }
