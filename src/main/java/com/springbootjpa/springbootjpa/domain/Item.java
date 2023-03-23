@@ -27,6 +27,12 @@ public abstract class Item {
     private List<Category> categories = new ArrayList<>();
 
     //== 비즈니스 로직 ==//
+    public void update(BookDTO bookDTO) {
+        this.name = bookDTO.getName();
+        this.price = bookDTO.getPrice();
+        this.stockQuantity = bookDTO.getStockQuantity();
+    }
+
 
     /**
      * 재고 수량을 증가

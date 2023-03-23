@@ -1,5 +1,6 @@
 package com.springbootjpa.springbootjpa.service;
 
+import com.springbootjpa.springbootjpa.domain.BookDTO;
 import com.springbootjpa.springbootjpa.domain.Item;
 import com.springbootjpa.springbootjpa.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,12 @@ public class ItemService {
     @Transactional
     public void save(Item item) {
         itemRepository.save(item);
+    }
+
+    @Transactional
+    public void update(BookDTO bookDTO) {
+        Item findItem = itemRepository.findOne(bookDTO.getId()); // Entity 변경할 경우에는 merge 보다는 변경감지 사용 추천
+        findItem.update(bookDTO);
     }
 
     /**

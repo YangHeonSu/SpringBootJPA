@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -100,16 +101,9 @@ public class ItemController {
      * @return
      */
     @PostMapping("/items/{itemId}/edit")
-    public String update(@PathVariable Long itemId, BookDTO bookDTO) {
-        Book book = new Book();
-        book.setId(bookDTO.getId());
-        book.setName(bookDTO.getName());
-        book.setPrice(bookDTO.getPrice());
-        book.setStockQuantity(bookDTO.getStockQuantity());
-        book.setAuthor(bookDTO.getAuthor());
-        book.setIsbn(bookDTO.getIsbn());
+    public String update(@PathVariable Long itemId,@ModelAttribute("form") BookDTO bookDTO) {
 
-        itemService.save(book);
+        itemService.update(bookDTO);
         return "redirect:/";
     }
 }
