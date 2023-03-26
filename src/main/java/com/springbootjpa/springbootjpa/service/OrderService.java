@@ -4,9 +4,12 @@ import com.springbootjpa.springbootjpa.domain.*;
 import com.springbootjpa.springbootjpa.repository.ItemRepository;
 import com.springbootjpa.springbootjpa.repository.MemberRepository;
 import com.springbootjpa.springbootjpa.repository.OrderRepository;
+import com.springbootjpa.springbootjpa.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true) // 조회할 경우 
@@ -49,6 +52,7 @@ public class OrderService {
      * 
      * @param orderId Long orderId
      */
+    @Transactional
     public void cancelOrder(Long orderId) {
         //주문 엔티티 조회
         Order order = orderRepository.findOne(orderId);
@@ -57,4 +61,7 @@ public class OrderService {
     }
 
     // 검색
+    public List<Order> findAll(OrderSearch orderSearch) {
+        return orderRepository.findAll(orderSearch);
+    }
 }

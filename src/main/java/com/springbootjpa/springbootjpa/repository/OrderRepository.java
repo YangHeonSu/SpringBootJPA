@@ -44,7 +44,7 @@ public class OrderRepository {
 
         // 주문 상태 검색
         if (orderSearch.getOrderStatus() != null) {
-            Predicate status = criteriaBuilder.equal(orderRoot.get("status"), orderSearch.getOrderStatus());
+            Predicate status = criteriaBuilder.equal(orderRoot.get("orderStatus"), orderSearch.getOrderStatus());
             criteria.add(status);
         }
         // 회원 이름 검색
